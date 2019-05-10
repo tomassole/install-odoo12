@@ -1,0 +1,105 @@
+
+T1bvlU3k4FhM
+
+sudo apt update && sudo apt upgrade
+sudo wget https://raw.githubusercontent.com/Yenthe666/InstallScript/12.0/odoo_install.sh
+
+Paso 1.-
+Iniciamos sesión en Ubuntu.
+sudo apt update && sudo apt upgrade
+Ejecutamos el comando (Solo copiar el texto que se encuentra entre las líneas):
+
+Odoo 12 comunity o enterprise en ubuntu 18.04
+sudo wget https://raw.githubusercontent.com/Yenthe666/InstallScript/12.0/odoo_install.sh
+
+Este comando nos descarga una copia del archivo "odoo_install.sh" y lo guarda en el directorio donde se ejecutó el comando.
+Podemos verificar la presencia del archivo ejecutando el comando "ls"
+
+Paso 2.-
+Es necesario configurar los permisos del archivo odoo_install para que sea ejecutable.
+
+sudo chmod +x odoo_install.sh
+       
+
+Paso 3.-
+Ejecutar el archivo.
+
+./odoo_install.sh
+       
+El proceso de instalación es relativamente largo y realiza muchas conexiones y descargas desde internet.
+Al finalizar el proceso se tendrá una copia funcional del software Odoo y solo es necesario abrir nuestro navegador y poner la IP de la máquina 
+donde se ejecutó el script seguido del puerto escogido.
+De forma predeterminada se vería de esta forma. http://192.168.0.1:8069 y nos aparece el diálogo para crear la primera Base de datos
+Debemos escoger la contraseña para el usuario "admin" de esta base de datos.
+Tomar en cuenta que para el control de todas las bases de datos siempre se nos va pedir el Master Password, en caso que no hayamos especificado 
+un Master Password el sistema nos va solicitar que se especifique uno al momento de crear la primer base de datos.
+El nombre de la base de datos puede ser cualquier cadena de caracteres alfanuméricos sin puntos, para poder escribir puntos es necesario realizar 
+modificaciones a la configuración.
+
+
+Información adicional.-
+
+sudo nano /etc/odoo-server.conf
+sudo service odoo-server restart
+sudo service odoo-server stop
+sudo service odoo-server start
+sudo reboot
+       
+
+* Tomar en cuenta que "odoo" es el usuario por defecto seleccionado en las variables del Script de instalación, si usted cambió dicho usuario debe modificar los comandos mencionados arriba acorde a su elección.
+- El primer comando nos permite leer y modificar el archivo de configuración que controla el funcionamiento de la mayor parte de las funciones de odoo.
+- El segundo comando nos permite reiniciar el servicio y actualizar cualquier modificación que se haya realizado al archivo de configuración.
+- El tercer comando detiene el servicio
+- El cuarto comando inicia el servicio
+- El quinto comando reinicia el sistema operativo.
+
+* Visitar y configurar postgressql como se sugiere http://pgtune.leopard.in.ua/
+
+* Visitar y seguir instrucciones para corregir este problema de Odoo:
+https://www.odoo.com/forum/help-1/question/dataerror-new-encoding-utf8-is-incompatible-with-the-encoding-of-the-template-database-sql-ascii-52124
+
+* Valores importantes en el archivo de configuración de Odoo.
+; configuración de workers para 2 vcpus y 4 GB de RAM
+limit_memory_hard = 2684354560
+limit_memory_soft = 2147483648
+limit_request = 8192
+limit_time_cpu = 600
+limit_time_real = 1200
+max_cron_threads = 1
+workers = 3
+      
+
+
+
+Este tutorial está basado en el trabajo de Aschenkels, Yenthe666, Yelizariev, Bassn en github.com
+Si este Artículo ha sido útil por favor visite las páginas de nuestros auspiciadores para ver excelentes ofertas.
+
+Publicado por Unknown en 21:49:00 
+Enviar por correo electrónico
+Escribe un blog
+Compartir con Twitter
+Compartir con Facebook
+Compartir en Pinterest
+Etiquetas: como instalar, erp español, ODOO
+
+
+,/odoo/OCA
+
+# some_modules
+#!/bin/bash
+################################################################################
+# Script for Installation: some odoo modules
+
+#
+################################################################################
+ 
+##fixed parameters
+OE_HOME="/odoo/OCA"
+
+/odoo/OCA/l10n-spain,/odoo/OCA/mis-builder,/odoo/OCA/bank-payment,/odoo/OCA/bank-statement-import,/odoo/OCA/vertical-hotel
+
+sudo git clone --branch 12.0 https://github.com/OCA/l10n-spain.git $OE_HOME/l10n-spain
+sudo git clone --branch 12.0 https://github.com/OCA/mis-builder.git $OE_HOME/mis-builder
+sudo git clone --branch 12.0 https://github.com/OCA/bank-payment.git $OE_HOME/bank-payment
+sudo git clone --branch 12.0 https://github.com/OCA/bank-statement-import.git $OE_HOME/bank-statement-import
+sudo git clone --branch 12.0 https://github.com/OCA/vertical-hotel.git $OE_HOME/vertical-hotel
