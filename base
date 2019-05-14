@@ -103,3 +103,13 @@ sudo git clone --branch 12.0 https://github.com/OCA/mis-builder.git $OE_HOME/mis
 sudo git clone --branch 12.0 https://github.com/OCA/bank-payment.git $OE_HOME/bank-payment
 sudo git clone --branch 12.0 https://github.com/OCA/bank-statement-import.git $OE_HOME/bank-statement-import
 sudo git clone --branch 12.0 https://github.com/OCA/vertical-hotel.git $OE_HOME/vertical-hotel
+sudo git clone --branch 12.0 https://github.com/OCA/account-financial-reporting.git $OE_HOME/account-financial-reporting
+sudo git clone --branch 12.0 https://github.com/OCA/account-analytic.git $OE_HOME/account-analytic
+sudo git clone --branch 12.0 https://github.com/OCA/server-ux.git $OE_HOME/server-ux
+sudo git clone --branch 12.0 https://github.com/OCA/web.git $OE_HOME/web
+sudo git clone --branch 12.0 https://github.com/OCA/reporting-engine.git $OE_HOME/reporting-engine
+
+sudo git clone --branch 12.0 https://github.com/OCA/reporting-engine.git /odoo/OCA/reporting-engine
+sudo chown -R odoo /odoo/OCA
+sudo chgrp -R odoo /odoo/OCA
+
